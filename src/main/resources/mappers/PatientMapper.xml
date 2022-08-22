@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lgadetsky.patientservice.repository.mapper.PatientMapper">
+	<resultMap id="patientResultMap" type="com.lgadetsky.patientservice.model.Patient">
+		<result property="id" column="ID"/>
+		<result property="firstName" column="FIRST_NAME"/>
+		<result property="middleName" column="MID_NAME"/>
+		<result property="lastName" column="LAST_NAME"/>
+		<result property="gender" column="GENDER_ID"/>
+		<result property="birthday" column="BIRTHDAY"/>
+		<result property="phone" column="PHONE"/>
+		<result property="email" column="EMAIL"/>
+		<result property="address" column="ADDRESS"/>
+	</resultMap>
+	
+	<insert id="insert"
+			parameterType="com.lgadetsky.patientservice.model.Patient"
+			useGeneratedKeys="true"
+			keyProperty="id">
+		insert into "patient" (ID, FIRST_NAME, MID_NAME, LAST_NAME, GENDER_ID, BIRTHDAY, PHONE, EMAIL, ADDRESS)
+		values (NEXTVAL('patient_seq'), #{firstName}, #{middleName}, #{lastName}, #{gemder}, #{birthday}, #{phone}, #{email}, #{address});
+	</insert>
+	
+	<select id="findById"
+			parameterType="int"
+			resultMap="patientResultMap">
+		select * from "patient" p
+		where p.id = #{id};
+	</select>
+	
+	<update id="update"
+			parameterType="com.lgadetsky.patientservice.mode.Patient">
+		update "patient" set
+							first_name = #{firstName},
+							mid_name = #{middleName},
+							last_name = #{lastName},
+							gender_id = #{gender},
+							birthday = #{birthday},
+							phone = #{phone},
+							email = #{email},
+							address = #{address}
+						where id = #{id};
+	</update>
+	
+	<delete id="deleteById"
+			parameterType="int">
+		delete from "patient" where id = #{id};	
+	</delete>
+
+</mapper>
