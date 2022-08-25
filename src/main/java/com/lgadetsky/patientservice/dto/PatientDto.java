@@ -22,8 +22,7 @@ public class PatientDto {
 	
 	public static PatientDto of (Patient p) {
 		return new PatientDtoBuilder().id(p.getId())
-				.name(new StringBuilder(p.getFirstName() + " " 
-				+ p.getLastName()).toString())
+				.name(new StringBuilder(p.getFirstName() + " " + p.getMiddleName() + " "+ p.getLastName()).toString())
 				.gender(p.getGender())
 				.birthday(p.getBirthday().toString())
 				.phone(p.getPhone())

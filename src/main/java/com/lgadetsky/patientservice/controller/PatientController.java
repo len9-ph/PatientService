@@ -1,6 +1,5 @@
 package com.lgadetsky.patientservice.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -9,16 +8,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.lgadetsky.patientservice.dto.PatientDto;
 import com.lgadetsky.patientservice.service.PatientService;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import lombok.AllArgsConstructor;
 
 @RestController
+@AllArgsConstructor
 public class PatientController {
-	@Autowired
-	private PatientService patientService;
+	
+	private final PatientService patientService;
+	
+	
 	
 	@PostMapping("/patient")
 	ResponseEntity<?> create(@RequestBody PatientDto patient){
