@@ -3,6 +3,7 @@ package com.lgadetsky.patientservice.service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.lgadetsky.patientservice.dto.PatientDto;
+import com.lgadetsky.patientservice.exception.PatientNotFoundException;
 import com.lgadetsky.patientservice.model.Patient;
 import com.lgadetsky.patientservice.repository.mapper.PatientMapper;
 
@@ -14,7 +15,7 @@ public class PatientService implements Service<PatientDto, Integer> {
 	@Override
 	public PatientDto create(PatientDto obj) {
 		if (obj == null)
-			return null;
+			throw new IllegalArgumentException();
 		else
 			patientMapper.insert(Patient.of(obj));
 		return obj;
@@ -23,14 +24,14 @@ public class PatientService implements Service<PatientDto, Integer> {
 	@Override
 	public PatientDto findById(Integer id) {
 		if (patientMapper.findById(id) == null)
-			return null;
+			throw new PatientNotFoundException();
 		else return PatientDto.of(patientMapper.findById(id));
 	}
 
 	@Override
 	public PatientDto update(PatientDto obj) {
 		if (patientMapper.findById(obj.getId()) == null)
-			return null;
+			throw new PatientNotFoundException();
 		else
 			patientMapper.update(Patient.of(obj));
 		return obj;
