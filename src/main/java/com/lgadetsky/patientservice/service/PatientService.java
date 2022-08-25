@@ -2,36 +2,37 @@ package com.lgadetsky.patientservice.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.lgadetsky.patientservice.dto.PatientDto;
 import com.lgadetsky.patientservice.model.Patient;
 import com.lgadetsky.patientservice.repository.mapper.PatientMapper;
 
 @org.springframework.stereotype.Service
-public class PatientService implements Service<Patient, Integer> {
+public class PatientService implements Service<PatientDto, Integer> {
 	@Autowired
 	private PatientMapper patientMapper;
 	
 	@Override
-	public Patient create(Patient obj) {
+	public PatientDto create(PatientDto obj) {
 		if (obj == null)
 			return null;
 		else
-			patientMapper.insert(obj);
+			patientMapper.insert(Patient.of(obj));
 		return obj;
 	}
 
 	@Override
-	public Patient findById(Integer id) {
+	public PatientDto findById(Integer id) {
 		if (patientMapper.findById(id) == null)
 			return null;
-		else return patientMapper.findById(id);
+		else return PatientDto.of(patientMapper.findById(id));
 	}
 
 	@Override
-	public Patient update(Patient obj) {
+	public PatientDto update(PatientDto obj) {
 		if (patientMapper.findById(obj.getId()) == null)
 			return null;
 		else
-			patientMapper.update(obj);
+			patientMapper.update(Patient.of(obj));
 		return obj;
 	}
 
