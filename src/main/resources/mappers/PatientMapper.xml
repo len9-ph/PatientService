@@ -31,7 +31,7 @@
 	</select>
 	
 	<update id="update"
-			parameterType="com.lgadetsky.patientservice.mode.Patient">
+			parameterType="com.lgadetsky.patientservice.model.Patient">
 		update "patient" set
 							first_name = #{firstName},
 							mid_name = #{middleName},
