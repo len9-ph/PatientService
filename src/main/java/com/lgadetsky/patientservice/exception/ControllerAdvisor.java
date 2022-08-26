@@ -24,13 +24,4 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler{
 		
 		return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
 	}
-	
-	public ResponseEntity<Object> handleIllegalArgumentException(
-			IllegalArgumentException ex, WebRequest request) {
-		Map<String, Object> body = new LinkedHashMap<>();
-		body.put("timestamp", LocalDateTime.now());
-		body.put("message", "Bad request");
-		
-		return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
-	}
 }

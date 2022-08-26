@@ -14,10 +14,7 @@ public class PatientService implements Service<PatientDto, Integer> {
 	
 	@Override
 	public PatientDto create(PatientDto obj) {
-		if (obj == null)
-			throw new IllegalArgumentException();
-		else
-			patientMapper.insert(Patient.of(obj));
+		patientMapper.insert(Patient.of(obj));
 		return obj;
 	}
 
