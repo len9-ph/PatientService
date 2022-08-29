@@ -6,13 +6,12 @@ import com.lgadetsky.patientservice.model.Patient;
 
 /**
  * Mapper
- * @author leoni
+ * @author Leonid Gadetsky
  * @see Patient
  */
 @Mapper
 public interface PatientMapper {
 	void insert(Patient patient);
-	Patient findById(int id);
+	Patient findByName(String first, String mid, String last, String birthday);
 	void update(Patient patient);
-	void deleteById(int id);
 }

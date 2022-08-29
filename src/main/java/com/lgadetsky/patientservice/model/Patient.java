@@ -29,9 +29,9 @@ public class Patient {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		return new PatientBuilder()
 				.id(obj.getId())
-				.firstName(obj.getName().split(" ")[0])
-				.middleName(obj.getName().split(" ")[1])
-				.lastName(obj.getName().split(" ")[2])
+				.firstName(obj.getFirstName())
+				.middleName(obj.getMidName())
+				.lastName(obj.getLastName())
 				.gender(obj.getGender())
 				.birthday(LocalDate.parse(obj.getBirthday(), dtf))
 				.phone(obj.getPhone())

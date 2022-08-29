@@ -13,7 +13,9 @@ import lombok.NoArgsConstructor;
 @Builder
 public class PatientDto {
 	private int id;
-	private String name;
+	private String firstName;
+	private String midName;
+	private String lastName;
 	private int gender;
 	private String birthday;
 	private String phone;
@@ -22,7 +24,9 @@ public class PatientDto {
 	
 	public static PatientDto of (Patient p) {
 		return new PatientDtoBuilder().id(p.getId())
-				.name(new StringBuilder(p.getFirstName() + " " + p.getMiddleName() + " "+ p.getLastName()).toString())
+				.firstName(p.getFirstName())
+				.midName(p.getMiddleName())
+				.lastName(p.getLastName())
 				.gender(p.getGender())
 				.birthday(p.getBirthday().toString())
 				.phone(p.getPhone())

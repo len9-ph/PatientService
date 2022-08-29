@@ -23,11 +23,14 @@
 		values (NEXTVAL('patient_seq'), #{firstName}, #{middleName}, #{lastName}, #{gender}, #{birthday}, #{phone}, #{email}, #{address});
 	</insert>
 	
-	<select id="findById"
-			parameterType="int"
+	<select id="findByName"
+			parameterType="String"
 			resultMap="patientResultMap">
 		select * from "patient" p
-		where p.id = #{id};
+		where p.first_name = #{first}
+			and p.mid_name = #{mid}
+			and p.last_name = #{last}
+			and p.birthday = to_date(#{birthday}, 'YYYY-MM-DD');
 	</select>
 	
 	<update id="update"
@@ -43,10 +46,4 @@
 							address = #{address}
 						where id = #{id};
 	</update>
-	
-	<delete id="deleteById"
-			parameterType="int">
-		delete from "patient" where id = #{id};	
-	</delete>
-
 </mapper>
