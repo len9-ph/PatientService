@@ -9,6 +9,11 @@ import io.swagger.v3.oas.models.info.Info;
 
 
 
+/**
+ * Swagger config class
+ * 
+ * @author Leonid Gadetsky
+ */
 @Configuration
 public class SwaggerConfig {
 	@Bean
