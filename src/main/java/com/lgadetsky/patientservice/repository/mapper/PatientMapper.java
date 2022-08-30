@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.lgadetsky.patientservice.model.Patient;
 
 /**
- * Mapper
+ * Mapper interace to work with database by PatientMapper.xml 
  * @author Leonid Gadetsky
  * @see Patient
  */

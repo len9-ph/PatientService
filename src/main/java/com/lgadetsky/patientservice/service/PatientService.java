@@ -6,6 +6,14 @@ import com.lgadetsky.patientservice.exception.PatientNotFoundException;
 import com.lgadetsky.patientservice.model.Patient;
 import com.lgadetsky.patientservice.repository.mapper.PatientMapper;
 
+/**
+ * Service class that implements {@link Service} inteface
+ * Work with {@link PatientMapper} methods 
+ * 
+ * @author Leonid Gadetsky
+ * @see Service
+ * @see PatientMapper
+ */
 @org.springframework.stereotype.Service
 public class PatientService implements Service<Patient, String> {
 	@Autowired

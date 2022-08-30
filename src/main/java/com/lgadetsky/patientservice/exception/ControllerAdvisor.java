@@ -11,6 +11,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+/**
+ * Class that extends {@link ResponseEntityExceptionHandler}
+ * Class helps PatientController to handle custom exceptions 
+ * 
+ * @author Leonid Gadetsky
+ * @see ResponseEntityExceptionHandler
+ * @see PatientNotFoundException
+ */
 @ControllerAdvice
 public class ControllerAdvisor extends ResponseEntityExceptionHandler{
 	

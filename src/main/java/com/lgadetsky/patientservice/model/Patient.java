@@ -10,6 +10,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Patient entity
+ * @author Leonid Gadetsky
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
