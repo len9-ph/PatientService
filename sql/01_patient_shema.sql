@@ -9,7 +9,7 @@ create table "patient" (
     birthday date,
     phone varchar(24),
     email varchar(32),
-    addres varchar(128)
+    address varchar(128)
 );
 
 alter table "patient" add constraint patient_id_pk primary key (id);
