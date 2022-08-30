@@ -47,9 +47,8 @@ public class PatientController {
 			@ApiResponse(responseCode = "200", description = "A new patient has been successfully created", content = @Content ),
     		@ApiResponse(responseCode = "500", description = "Server error", content = @Content)
 })
-	PatientDto create(@RequestBody PatientDto patient){
-		patientService.create(Patient.of(patient));
-		return patient;
+	Integer create(@RequestBody PatientDto patient){
+		return patientService.create(Patient.of(patient));
 	}
 	
 	@GetMapping("/patient/{first}/{mid}/{last}/{birthday}")
@@ -91,10 +90,9 @@ public class PatientController {
 	    	@ApiResponse(responseCode = "400", description = "Bad request", content = @Content),
 	    	@ApiResponse(responseCode = "500", description = "Server error", content = @Content)
 	})
-	PatientDto update(@PathVariable int id, @RequestBody PatientDto patient) {
+	Integer update(@PathVariable int id, @RequestBody PatientDto patient) {
 		patient.setId(id);
-		patientService.update(Patient.of(patient));
-		return patient;
+		return patientService.update(Patient.of(patient));
 	}
 
 }

@@ -15,35 +15,33 @@ import com.lgadetsky.patientservice.repository.mapper.PatientMapper;
  * @see PatientMapper
  */
 @org.springframework.stereotype.Service
-public class PatientService implements Service<Patient, String> {
+public class PatientService implements Service<Patient, Integer> {
 	@Autowired
 	private PatientMapper patientMapper;
 	
 	@Override
-	public Patient create(Patient obj) {
-		patientMapper.insert(obj);
-		return obj;
+	public Integer create(Patient obj) {
+		return patientMapper.insert(obj);
 	}
-
-	@Override
+	
 	public Patient findByName(String first, String mid, String last, String birth) {
 		if (patientMapper.findByName(first, mid, last, birth) == null)
 			throw new PatientNotFoundException();
 		else return patientMapper.findByName(first, mid, last, birth);
 	}
-	
-	public Patient findById(int id) {
+	@Override
+	public Patient findById(Integer id) {
 		if (patientMapper.findById(id) == null)
 			throw new PatientNotFoundException();
 		else return patientMapper.findById(id);
 	}
 
 	@Override
-	public Patient update(Patient obj) {
+	public Integer update(Patient obj) {
 		if (patientMapper.findById(obj.getId()) == null)
 			throw new PatientNotFoundException();
 		else
 			patientMapper.update(obj);
-		return obj;
+		return obj.getId();
 	}
 }

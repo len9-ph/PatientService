@@ -20,7 +20,7 @@
 			useGeneratedKeys="true"
 			keyProperty="id">
 		insert into "patient" (ID, FIRST_NAME, MID_NAME, LAST_NAME, GENDER_ID, BIRTHDAY, PHONE, EMAIL, ADDRESS)
-		values (NEXTVAL('patient_seq'), #{firstName}, #{middleName}, #{lastName}, #{gender}, #{birthday}, #{phone}, #{email}, #{address});
+			values (NEXTVAL('patient_seq'), #{firstName}, #{middleName}, #{lastName}, #{gender}, #{birthday}, #{phone}, #{email}, #{address});
 	</insert>
 	
 	<select id="findByName"
