@@ -33,6 +33,13 @@
 			and p.birthday = to_date(#{birthday}, 'YYYY-MM-DD');
 	</select>
 	
+	<select id="findById"
+			parameterType="int"
+			resultMap="patientResultMap">
+		select * from "patient" p
+		where p.id = #{id};
+	</select>
+	
 	<update id="update"
 			parameterType="com.lgadetsky.patientservice.model.Patient">
 		update "patient" set
