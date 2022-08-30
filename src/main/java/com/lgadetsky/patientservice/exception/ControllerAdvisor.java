@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Class that extends {@link ResponseEntityExceptionHandler}
  * Class helps PatientController to handle custom exceptions 
@@ -20,6 +22,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
  * @see PatientNotFoundException
  */
 @ControllerAdvice
+@Slf4j
 public class ControllerAdvisor extends ResponseEntityExceptionHandler{
 	
 	private final static String TIMESTAMP = "timestamp";
@@ -33,7 +36,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler{
 		Map<String, Object> body = new LinkedHashMap<>();
 		body.put(TIMESTAMP, LocalDateTime.now());
 		body.put(MESSAGE, PATIENT_NOT_FOUND);
-		
+		log.error(ex.getMessage());
 		return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
 	}
 }
