@@ -55,8 +55,7 @@ public class PatientService implements Service<Patient, Integer> {
 	private boolean validate(Patient obj) {
 		if (obj == null | (obj.getFirstName().isBlank() 
 				| obj.getMiddleName().isBlank()
-				| obj.getLastName().isBlank()
-				| (obj.getBirthday() == null)))
+				| obj.getLastName().isBlank()))
 			return false;
 		else 
 			return true;

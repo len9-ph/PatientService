@@ -60,5 +60,14 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler{
 		log.error(ex.getMessage());
 		return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
 	}
+	@ExceptionHandler(NullPointerException.class)
+	public ResponseEntity<Object> handleNullPointerException(
+			NullPointerException ex, WebRequest request) {
+		Map<String, Object> body = new LinkedHashMap<>();
+		body.put(TIMESTAMP, LocalDateTime.now());
+		body.put(MESSAGE, PATIENT_NOT_VALID);
+		log.error(ex.getMessage());
+		return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+	}
 	
 }
