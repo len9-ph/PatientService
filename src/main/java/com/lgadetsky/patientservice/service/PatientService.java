@@ -20,8 +20,11 @@ public class PatientService implements Service<Patient, Integer> {
 	private PatientMapper patientMapper;
 	
 	@Override
-	public Integer create(Patient obj) {
-		return patientMapper.insert(obj);
+	public Patient create(Patient obj) {
+		if (!validate(obj))
+			throw new IllegalArgumentException();
+		patientMapper.insert(obj);
+		return obj;
 	}
 	
 	public Patient findByName(String first, String mid, String last, String birth) {
@@ -37,11 +40,24 @@ public class PatientService implements Service<Patient, Integer> {
 	}
 
 	@Override
-	public Integer update(Patient obj) {
+	public Patient update(Patient obj) {
+		if(!validate(obj))
+			throw new IllegalArgumentException();
+		
 		if (patientMapper.findById(obj.getId()) == null)
 			throw new PatientNotFoundException();
 		else
 			patientMapper.update(obj);
-		return obj.getId();
+		return obj;
+	}
+	
+	private boolean validate(Patient obj) {
+		if (obj == null || (obj.getFirstName().isBlank() 
+				&& obj.getMiddleName().isBlank()
+				&& obj.getLastName().isBlank()
+				&& (obj.getBirthday() == null)))
+			return false;
+		else 
+			return true;
 	}
 }

@@ -28,15 +28,25 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler{
 	private final static String TIMESTAMP = "timestamp";
 	private final static String MESSAGE = "message";
 	private final static String PATIENT_NOT_FOUND = "Patient not found";
+	private final static String PATIENT_NOT_VALID = "Patient not valid";
 	
 	@ExceptionHandler(PatientNotFoundException.class)
 	public ResponseEntity<Object> handlePatientNotFoundException(
 			PatientNotFoundException ex, WebRequest request) {
-		
 		Map<String, Object> body = new LinkedHashMap<>();
 		body.put(TIMESTAMP, LocalDateTime.now());
 		body.put(MESSAGE, PATIENT_NOT_FOUND);
 		log.error(ex.getMessage());
 		return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
 	}
+	
+	public ResponseEntity<Object> handlePatientNotValidExcetion(
+			PatientNotValidException ex, WebRequest request) {
+		Map<String, Object> body = new LinkedHashMap<>();
+		body.put(TIMESTAMP, LocalDateTime.now());
+		body.put(MESSAGE, PATIENT_NOT_VALID);
+		log.error(ex.getMessage());
+		return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+	}
+	
 }

@@ -17,10 +17,15 @@
 	
 	<insert id="insert"
 			parameterType="com.lgadetsky.patientservice.model.Patient"
-			useGeneratedKeys="true"
-			keyProperty="id">
+			useGeneratedKeys="true">
+			
+		  <selectKey keyProperty="id"
+          			 resultType ="int"
+          			 order="BEFORE">
+          		select nextval('patient_seq')
+          </selectKey>
 		insert into "patient" (ID, FIRST_NAME, MID_NAME, LAST_NAME, GENDER_ID, BIRTHDAY, PHONE, EMAIL, ADDRESS)
-			values (NEXTVAL('patient_seq'), #{firstName}, #{middleName}, #{lastName}, #{gender}, #{birthday}, #{phone}, #{email}, #{address});
+			values (#{id}, #{firstName}, #{middleName}, #{lastName}, #{gender}, #{birthday}, #{phone}, #{email}, #{address});
 	</insert>
 	
 	<select id="findByName"

@@ -47,7 +47,7 @@ public class PatientController {
 			@ApiResponse(responseCode = "200", description = "A new patient has been successfully created", content = @Content ),
     		@ApiResponse(responseCode = "500", description = "Server error", content = @Content)
 })
-	Integer create(@RequestBody PatientDto patient){
+	Patient create(@RequestBody PatientDto patient){
 		return patientService.create(Patient.of(patient));
 	}
 	
@@ -90,7 +90,7 @@ public class PatientController {
 	    	@ApiResponse(responseCode = "400", description = "Bad request", content = @Content),
 	    	@ApiResponse(responseCode = "500", description = "Server error", content = @Content)
 	})
-	Integer update(@PathVariable int id, @RequestBody PatientDto patient) {
+	Patient update(@PathVariable int id, @RequestBody PatientDto patient) {
 		patient.setId(id);
 		return patientService.update(Patient.of(patient));
 	}

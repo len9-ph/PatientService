@@ -8,7 +8,7 @@ package com.lgadetsky.patientservice.service;
  * @param <E> - object id type
  */
 public interface Service<T, E> {
-	E create(T obj);
+	T create(T obj);
 	T findById(E id);
-	E update(T obj);
+	T update(T obj);
 }

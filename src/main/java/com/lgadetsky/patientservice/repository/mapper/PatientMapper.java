@@ -11,8 +11,8 @@ import com.lgadetsky.patientservice.model.Patient;
  */
 @Mapper
 public interface PatientMapper {
-	int insert(Patient patient);
+	void insert(Patient patient);
 	Patient findByName(String first, String mid, String last, String birthday);
 	Patient findById(int id);
-	int update(Patient patient);
+	void update(Patient patient);
 }
