@@ -45,7 +45,8 @@ public class PatientController {
 			description = "Creates a new patient with parameters are contatined in the requestbody")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "A new patient has been successfully created", content = @Content ),
-    		@ApiResponse(responseCode = "500", description = "Server error", content = @Content)
+    		@ApiResponse(responseCode = "400", description = "Bad request", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Server error", content = @Content)
 })
 	Patient create(@RequestBody PatientDto patient){
 		return patientService.create(Patient.of(patient));
