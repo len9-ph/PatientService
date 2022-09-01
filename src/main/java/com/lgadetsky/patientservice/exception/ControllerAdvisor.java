@@ -40,6 +40,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler{
 		return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
 	}
 	
+	@ExceptionHandler(PatientNotValidException.class)
 	public ResponseEntity<Object> handlePatientNotValidExcetion(
 			PatientNotValidException ex, WebRequest request) {
 		Map<String, Object> body = new LinkedHashMap<>();
