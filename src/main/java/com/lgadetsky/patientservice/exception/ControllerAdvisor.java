@@ -1,6 +1,7 @@
 package com.lgadetsky.patientservice.exception;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -43,6 +44,16 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler{
 	@ExceptionHandler(PatientNotValidException.class)
 	public ResponseEntity<Object> handlePatientNotValidExcetion(
 			PatientNotValidException ex, WebRequest request) {
+		Map<String, Object> body = new LinkedHashMap<>();
+		body.put(TIMESTAMP, LocalDateTime.now());
+		body.put(MESSAGE, PATIENT_NOT_VALID);
+		log.error(ex.getMessage());
+		return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(DateTimeParseException.class)
+	public ResponseEntity<Object> handleDateTimeParseException(
+			DateTimeParseException ex, WebRequest request) {
 		Map<String, Object> body = new LinkedHashMap<>();
 		body.put(TIMESTAMP, LocalDateTime.now());
 		body.put(MESSAGE, PATIENT_NOT_VALID);

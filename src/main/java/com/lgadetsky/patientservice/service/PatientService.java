@@ -3,6 +3,7 @@ package com.lgadetsky.patientservice.service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.lgadetsky.patientservice.exception.PatientNotFoundException;
+import com.lgadetsky.patientservice.exception.PatientNotValidException;
 import com.lgadetsky.patientservice.model.Patient;
 import com.lgadetsky.patientservice.repository.mapper.PatientMapper;
 
@@ -22,7 +23,7 @@ public class PatientService implements Service<Patient, Integer> {
 	@Override
 	public Patient create(Patient obj) {
 		if (!validate(obj))
-			throw new IllegalArgumentException();
+			throw new PatientNotValidException();
 		patientMapper.insert(obj);
 		return obj;
 	}
@@ -42,7 +43,7 @@ public class PatientService implements Service<Patient, Integer> {
 	@Override
 	public Patient update(Patient obj) {
 		if(!validate(obj))
-			throw new IllegalArgumentException();
+			throw new PatientNotValidException();
 		
 		if (patientMapper.findById(obj.getId()) == null)
 			throw new PatientNotFoundException();
@@ -52,10 +53,10 @@ public class PatientService implements Service<Patient, Integer> {
 	}
 	
 	private boolean validate(Patient obj) {
-		if (obj == null || (obj.getFirstName().isBlank() 
-				&& obj.getMiddleName().isBlank()
-				&& obj.getLastName().isBlank()
-				&& (obj.getBirthday() == null)))
+		if (obj == null | (obj.getFirstName().isBlank() 
+				| obj.getMiddleName().isBlank()
+				| obj.getLastName().isBlank()
+				| (obj.getBirthday() == null)))
 			return false;
 		else 
 			return true;
