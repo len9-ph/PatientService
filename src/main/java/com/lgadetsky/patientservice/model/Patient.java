@@ -34,7 +34,7 @@ public class Patient {
 		return new PatientBuilder()
 				.id(obj.getId())
 				.firstName(obj.getFirstName())
-				.middleName(obj.getMidName())
+				.middleName(obj.getMiddleName())
 				.lastName(obj.getLastName())
 				.gender(obj.getGender())
 				.birthday(LocalDate.parse(obj.getBirthday(), dtf))

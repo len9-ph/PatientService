@@ -47,7 +47,7 @@ public class PatientController {
 			@ApiResponse(responseCode = "200", description = "A new patient has been successfully created", content = @Content ),
     		@ApiResponse(responseCode = "400", description = "Bad request", content = @Content),
 			@ApiResponse(responseCode = "500", description = "Server error", content = @Content)
-})
+	})
 	Patient create(@RequestBody PatientDto patient){
 		return patientService.create(Patient.of(patient));
 	}
